@@ -4,7 +4,7 @@ from .forms import ProductBasketForm
 from .models import Products, ProductBasket
 import telebot
 
-bot = telebot.TeleBot('6884775017:AAHoStRR5iTROu0h-V984WMYVVTA3_bUkBw')
+bot = telebot.TeleBot('')
 
 
 def index(request):
