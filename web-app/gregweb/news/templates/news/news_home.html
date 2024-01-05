@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Новости{% endblock title %}
+{% load static %}
+
+{% block content %}
+
+    <div class="features" id="news_panel">
+        {% for el in news %}
+        <div class="block_news" >
+        <div class="info_news">
+            <h2>{{ el.title }}</h2>
+            <h5>{{el.anons}}</h5>
+            <a href="" class="btn btn-warning">Подробнее...</a>
+            <p class="p_news">{{el.full_text}}</p>
+            <p class="p_news">{{el.date}}</p>
+        </div>
+            <div class="img_news" style="background-image: url({% static 'main/img/' %}{{el.photo}}.jpg);">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

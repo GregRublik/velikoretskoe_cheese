@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+{% block title %}Корзина{% endblock title %}
+{% load static %}
+{% block content %}
+<div id="confirm_products" class="div_products">
+    <form id="confirm_form" method="post">{% csrf_token %}
+        <input class="input_text" type="text" name="confirm_form_name" placeholder="Имя" maxlength="20" required=""
+               ><br>
+        <input class="input_text" type="text" name="confirm_form_first_name" placeholder="Фамилия" maxlength="20"
+               required=""><br>
+        <input class="input_text" type="tel" name="confirm_form_number" placeholder="Номер телефона"
+               maxlength="16"
+               required=""><br>
+        <div class="form_toggle">
+            	<div class="form_toggle-item item-1">
+                    <input class="method_obtaining" id="fid-1" type="radio" name="method of obtaining" value="Самовывоз">
+                    <label for="fid-1">Самовывоз</label>
+                </div>
+                <div class="form_toggle-item item-2">
+                    <input class="method_obtaining"  id="fid-2" type="radio" name="method of obtaining" value="Доставка">
+                    <label for="fid-2"> Доставка </label>
+                </div>
+        </div>
+        <div id="hide1">
+        <input class="input_text" type="text" name="confirm_form_address" placeholder="Адрес доставки" maxlength="200"><br>
+        </div>
+        <div id="hide2">
+            <select class="input_text" name="address_shop">
+            <option>Юго-западный рынок</option>
+            <option>Центральный рынок</option>
+            <option>Преображенская улица</option>
+        </select>
+        </div>
+        {% for el in product_in_basket %}
+        {% if el.session_key == SES_KEY %}
+        <input hidden type="text" name="confirm_list_product{{el.id}}" maxlength='380'
+                       value='{{el.name_products}},{{el.count_products}}гр.' required=''>
+        {% endif %}
+        {% endfor %}
+        <input class="input_text" type="text" name="comment" maxlength='380' placeholder="Комментарий к заказу">
+        <button class="btn btn-danger" >
+            подтвердить
+        </button>
+    </form>
+</div>
+{% endblock content %}
+

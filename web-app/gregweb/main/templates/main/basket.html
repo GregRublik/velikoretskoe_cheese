@@ -1,0 +1,51 @@
+{% extends 'main/layout.html' %}
+{% block title %}Корзина{% endblock title %}
+{% load static %}
+{% block content %}
+    <div id="block_payment"><a href="{% url 'confirm' %}">
+        <h1>
+            {% for key, value  in data_sum.items %}
+            {% if key == SES_KEY %}
+            {{ value|floatformat:0 }}₽
+            {% endif %}
+            {% endfor %}
+        </h1>
+        <div ><h5>Оформить</h5></div></a>
+    </div>
+    <div id="block_payment_warning">
+        <h2>ВНИМАНИЕ!</h2>
+        <h4>ПРОЧТИТЕ ПЕРЕД ОФОРМЛЕНИЕМ ПОКУПКИ!</h4>
+        <p>При заказе от 1500р, доставка становится бесплатной. До 1500р стоимость доставки 200р</p>
+        <p>Минимальная сумма заказа с доставкой (не самовывоз) 500р</p>
+        <p>Ввиду того что невозможно взвесить товар точно, конечная цена и обьем товара будет немного отличатся!</p>
+        <p>После подтверждения заказа вам перезвонит оператор и уточнит информацию</p>
+    </div>
+        <div id="basket_products">
+        {% for el in product_in_basket %}
+            {% if el.session_key == SES_KEY %}
+            <div class="basket_product">
+                <h6 class="name_products_basket" style="color:#fff;">
+                    {{ el.name_products }}
+                </h6>
+                    <p class="price_products_basket" style="color:#fff;">
+                        {{el.price_products}}₽ × {{el.count_products}} гр. = {{el.sum|floatformat:0}}₽
+                    </p>
+                        <div id="basket_product_{{el.numb_photo}}">
+                            <div>
+                                <form class="form_basket_delete" method="post">{% csrf_token %}
+                                    <input hidden type="number" name="id" value="{{ el.id }}" id="{{el.numb_photo}}"
+                                           maxlength="50" required="">
+                                    <p class="name_products_basket" style="color:#fff;">{{ el.description_products }}</p>
+                                    <button class="button_basket_close" >
+                                    <i style="color:white; margin-right:10px; margin-top:10px;"  id="icon_del" class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                                </form>
+
+                            </div>
+                        </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+{% block title %}Заказ оформлен{% endblock title %}
+{% block content %}
+<div class="features">
+    <div id="confirmed_main">
+        <h1>СПАСИБО, ЗАКАЗ ОФОРМЛЕН!</h1>
+        <h5>ожидайте подтверждения заказа по телефону</h5>
+        <a href="{% url 'home' %}" class="btn btn-danger">На главную страницу</a>
+    </div>
+
+</div>
+{% endblock content %}

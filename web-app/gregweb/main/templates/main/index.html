@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}
+{% block title %}Главная страница{% endblock title %}
+{% block content %}
+<div class="features" >
+    <div class="features_left" id="features_left_1" style="background-position:center; background-size: cover; background-repeat: no-repeat; background-image: url(https://sun9-51.userapi.com/impg/aUx-vcfGodDbnaKjjHpcECGUPqkWOPEXb-eNaA/F-qOBxBFkPc.jpg?size=807x538&quality=95&sign=3053d07ef81b303358f3b8ecf61df59e&type=album);" >
+        <h1>КАТАЛОГ</h1>
+        <p class="features_p">КФХ Великорецкое предлагает вам попробовать великорецкие сыры, натуральный продукт на основе молока, закваски и сычужного фермента</p>
+        <a href="{% url 'catalog' %}" class="btn btn-danger">Перейти в каталог</a>
+    </div>
+    <div class="features_left" id="features_left_2" style="background-position:center; background-size: cover; background-repeat: no-repeat; background-image: url(https://sun9-65.userapi.com/impf/c850532/v850532050/3b9f8/dYG5ovNVOO4.jpg?size=1280x859&quality=96&sign=060a94f29e5dc4d84665d420975638a5&type=album);">
+        <h1>О НАС</h1>
+        <p class="features_p">Об истории производства</p>
+        <a href="{% url 'about' %}" class="btn btn-danger">Узнать о нас больше</a>
+    </div>
+    <div class="features_right"  id="features_right_1" style="background-position:center; background-size: cover; background-repeat: no-repeat; background-image: url(https://sun9-7.userapi.com/impg/q3on2diG4zJBhrwq4_SAAgT1M6sAgde57vvOdQ/RBT_-iJSqdo.jpg?size=1051x778&quality=95&sign=80e87d834f6a25201064ee4868002ab7&type=album);">
+        <h1>КОНТАКТЫ</h1>
+        <p class="features_p">Обращайтесь по любым вопросам в рабочее время, мы рады будем ответить на ваши вопросы</p>
+        <a href="{% url 'contacts' %}" class="btn btn-danger">Перейти к контактам</a>
+    </div>
+    <div class="features_right" id="features_right_2" style="background-position:center; background-size: cover; background-repeat: no-repeat; background-image: url(https://sun9-18.userapi.com/impg/SvKQqkNaNFsabGKXcRlRE_D1HaPAEY0UslbJXA/Yc-Gd7I14nk.jpg?size=1280x853&quality=95&sign=19f2e25e112d8a9c442d010f73cd0d61&type=album);">
+        <h1>НОВОСТИ</h1>
+        <p class="features_p">Последние события связанные с нами и нашим производством</p>
+        <a href="{% url 'news' %}" class="btn btn-danger">Последние новости</a>
+    </div>
+</div>
+{% endblock content %}

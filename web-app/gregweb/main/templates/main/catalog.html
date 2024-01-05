@@ -1,0 +1,46 @@
+{% extends 'main/layout.html' %}
+{% block title %}Каталог{% endblock title %}
+{% load static %}
+{% block content %}
+    <h1 style="color:white; text-align: center" ></h1>
+    <span>{{ error }}</span>
+    <div class="wrapper">
+        {% for el in products %}
+        <div class="single-card">
+            <div class="img-area">
+               <img src="{% static 'main/img/' %}{{el.numb_photo}}.jpg">
+                <div class="overlay">
+
+                    <div id="form_{{el.numb_photo}}">
+                        <form method="post" class="form_buying_products">{% csrf_token %}
+                            <input type="number" name="count_products" id="number_{{el.numb_photo}}" class="form-control"
+                                   placeholder="Укажите вес (гр)" style="width: 37%;" required=""><br>
+                                <div hidden>
+                                    <input type="text" name="description_products"
+                                           value="{{ el.description_products_min }}"
+                                           id="description_products_{{el.numb_photo}}" maxlength="50" required=""><br>
+                                    <input type="text" name="session_key" value="{{SES_KEY}}"
+                                           id="session_key_{{el.numb_photo}}" maxlength="128" required=""><br>
+                                    <input type="text" name="name_products" value="{{el.name_products}}"
+                                           id="name_products_{{el.numb_photo}}" maxlength="30" required=""><br>
+                                    <input type="number" name="price_products" value="{{el.price_products}}"
+                                           id="price_products_{{el.numb_photo}}" required=""><br>
+                                    <input type="text" name="numb_photo" value="{{el.numb_photo}}"
+                                           id="numb_photo_{{el.numb_photo}}" maxlength="20" required=""><br>
+                                </div>
+                            <button type="submit" id="submit_btn_{{el.numb_photo}}"
+                                    class="add-to-card">Добавить в корзину</button>
+                        </form>
+                    </div>
+                    <button class="view-details">Описание</button>
+                </div>
+            </div>
+            <div CLASS="info">
+                <h3 class="name_products">{{ el.name_products }}</h3>
+                <p class="price">{{ el.price_products }}₽</p>
+                <p>{{ el.description_products_min }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
